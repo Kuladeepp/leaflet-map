@@ -1,0 +1,41 @@
+---
+title: "Interactive Leaflet Map — Demo Page"
+author: "Damarla Kuladeep"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: 
+  html_document:
+    self_contained: true
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(leaflet)
+```
+
+
+Hi there!
+
+
+```{r, include = FALSE}
+landmarks <- data.frame(
+  lat = c(48.8584, 40.6892, 27.1751, 35.3606, -22.9519),
+  lng = c(2.2945, -74.0445, 78.0421, 138.7274, -43.2105),
+  name = c(
+    "Eiffel Tower (Paris, France)",
+    "Statue of Liberty (New York, USA)",
+    "Taj Mahal (Agra, India)",
+    "Mount Fuji (Japan)",
+    "Christ the Redeemer (Rio, Brazil)"
+  )
+)
+
+```
+
+
+```{r}
+leaflet() %>%
+  setView(lat = 20, lng = 0, zoom = 2) %>%
+  addTiles() %>%
+  addMarkers(lat = landmarks$lat, lng = landmarks$lng, label = landmarks$name)
+
+```
